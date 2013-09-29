@@ -1,4 +1,4 @@
 gfMixins
 ========
 
-An open collection of useful Sass mixins
+A collection of useful Sass mixins
