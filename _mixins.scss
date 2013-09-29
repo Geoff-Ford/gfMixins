@@ -1,0 +1,70 @@
+/*
+ * Let's save some time and mix it up a little!
+ * @author Geoff Ford
+ */
+
+// Some standard 'mobile first' i.e. min-width breakpoints
+// defined by variables.
+$speeder: 24em;
+$tie: 52.9em;
+$cruiser: 53em;
+$destroyer: 60em;
+$deathstar: 100em;
+
+@mixin breakpoint($point) {
+    @if $point == speeder {
+        @media screen and (min-width: $speeder) { @content; }
+    }
+    @else if $point == tie {
+        @media screen and (max-width: $tie) { @content; }
+    }
+    @else if $point == cruiser {
+        @media screen and (min-width: $cruiser) { @content; }
+    }
+    @else if $point == destroyer {
+        @media screen and (min-width: $destroyer) { @content; }
+    }
+    @else if $point == deathstar {
+        @media screen and (min-width: $deathstar)  { @content; }
+    }
+}
+
+// Webfont import built with a mixture of http://www.fontspring.com/blog/the-new-bulletproof-font-face-syntax
+// and output from http://icomoon.io/app/
+@mixin font($font-face, $font-style: normal, $font-weight: normal) {
+    @font-face {
+        font-family: $font-face;
+	src:url('fonts/#{$font-face}.eot');
+        src: url('fonts/#{$font-face}.eot?#iefix') format('embedded-opentype'), 
+             url('fonts/#{$font-face}.woff') format('woff'), 
+             url('fonts/#{$font-face}.ttf')  format('truetype'),
+             url('fonts/#{$font-face}.svg##{$font-face}') format('svg');
+        font-weight: $font-weight;
+        font-style: $font-style;
+    }
+}
+
+// Webfont icon usage mostly by output from http://icomoon.io/app/
+@mixin icons($font-face, $font-weight: normal) {
+    [data-icon]:before {
+        font-family: $font-face;
+        content: attr(data-icon);
+        speak: none;
+	font-weight: $font-weight;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    }
+}
+
+// Yep a good ol border-radius mixin for vendor prefixes
+$default-border-radius: 1em;
+
+@mixin border-radius($tl: $default-border-radius, $tr: $default-border-radius, $br: $default-border-radius, $bl: $default-border-radius) {
+  -moz-border-radius: $tl $tr $br $bl;
+  -webkit-border-radius: $tl $tr $br $bl;
+  -ms-border-radius: $tl $tr $br $bl;
+  border-radius: $tl $tr $br $bl;
+}
