@@ -34,7 +34,7 @@ $deathstar: 100em;
 @mixin font($font-face, $font-style: normal, $font-weight: normal) {
     @font-face {
         font-family: $font-face;
-	src:url('fonts/#{$font-face}.eot');
+	src: url('fonts/#{$font-face}.eot');
         src: url('fonts/#{$font-face}.eot?#iefix') format('embedded-opentype'), 
              url('fonts/#{$font-face}.woff') format('woff'), 
              url('fonts/#{$font-face}.ttf')  format('truetype'),
@@ -63,8 +63,18 @@ $deathstar: 100em;
 $default-border-radius: 1em;
 
 @mixin border-radius($tl: $default-border-radius, $tr: $default-border-radius, $br: $default-border-radius, $bl: $default-border-radius) {
-  -moz-border-radius: $tl $tr $br $bl;
-  -webkit-border-radius: $tl $tr $br $bl;
-  -ms-border-radius: $tl $tr $br $bl;
-  border-radius: $tl $tr $br $bl;
+    -moz-border-radius: $tl $tr $br $bl;
+    -webkit-border-radius: $tl $tr $br $bl;
+    -ms-border-radius: $tl $tr $br $bl;
+    border-radius: $tl $tr $br $bl;
+}
+
+// A background-image mixin including image-set with fallback
+@mixin background-image($url-1x, $url-2x: false) {
+    background-image: url('#{$url-1x}');
+    @if $url-2x {
+        background-image: -webkit-image-set(url('#{$url-1x}') 1x, url('#{$url-2x}') 2x);
+        background-image: -moz-image-set(url('#{$url-1x}') 1x, url('#{$url-2x}') 2x);
+        background-image: image-set(url('#{$url-1x}') 1x, url('#{$url-2x}') 2x);
+    }
 }
